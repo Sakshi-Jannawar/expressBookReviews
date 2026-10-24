@@ -42,7 +42,7 @@ regd_users.post("/login", (req, res) => {
       username
     };
 
-    return res.status(200).json({ message: "Customer successfully logged in" });
+    return res.status(200).send("Customer successfully logged in");
   } else {
     return res.status(208).json({ message: "Invalid Login. Check username and password" });
   }
@@ -82,7 +82,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
 
   if (books[isbn].reviews && books[isbn].reviews[username]) {
     delete books[isbn].reviews[username];
-    return res.status(200).json({ message: "Reviews for the ISBN " + isbn + " posted by the user " + username + " deleted." });
+    return res.status(200).send(`Review for the ISBN ${isbn} is deleted.`);
   } else {
     return res.status(404).json({ message: "Review not found for user " + username });
   }
